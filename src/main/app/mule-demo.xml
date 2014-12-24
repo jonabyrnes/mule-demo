@@ -10,13 +10,14 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
 http://www.mulesoft.org/schema/mule/hello-world http://www.mulesoft.org/schema/mule/hello-world/current/mule-hello-world.xsd">
+    <spring:beans>
+        <spring:bean id="objectLogger" class="biz.directnorth.util.ObjectLogger"/>
+    </spring:beans>    
     <hello-world:config name="HelloWorld" doc:name="HelloWorld" username="someusername"/>
     <flow name="mule-demoFlow1" doc:name="mule-demoFlow1">
         <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP"/>
         <hello-world:get-customer config-ref="HelloWorld" content="#[payload]" doc:name="HelloWorld"/>
-        <json:object-to-json-transformer doc:name="Object to JSON"/>
-        <logger level="INFO" doc:name="Logger" message="#[payload]"/>
-        <json:json-to-object-transformer doc:name="JSON to Object"/>
+        <invoke object-ref="objectLogger" method="toJson" doc:name="Invoke" methodArguments="#[payload]"/>        
         <json:object-to-json-transformer doc:name="Object to JSON"/>
     </flow>
 </mule>
