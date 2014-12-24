@@ -13,11 +13,11 @@ public class ObjectLogger {
 	
     public Object toJson(Object payload) {   
     	try {
-			log.info(mapper.writeValueAsString(payload));			
-		} catch (JsonProcessingException e) {
-			log.error(e.getMessage(), e);
-		}
-        return payload;
+				log.info(mapper.writeValueAsString(payload));
+			} catch (JsonProcessingException e) {
+				log.error(e.getMessage(), e);
+			}
+			return payload;
     }
   
 }
