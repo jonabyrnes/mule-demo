@@ -11,13 +11,13 @@ public class ObjectLogger {
 	private static final Log log = LogFactory.getLog(ObjectMapper.class);	
 	private static final ObjectMapper mapper = new ObjectMapper();
 	
-    public Object toJson(Object payload) {   
-    	try {
-				log.info(mapper.writeValueAsString(payload));
-			} catch (JsonProcessingException e) {
-				log.error(e.getMessage(), e);
-			}
-			return payload;
-    }
+	public Object toJson(Object payload) {
+		try {
+			log.info(mapper.writeValueAsString(payload));
+		} catch (JsonProcessingException e) {
+			log.error(e.getMessage(), e);
+		}
+		return payload;
+	}
   
 }
