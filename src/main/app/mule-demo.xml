@@ -17,7 +17,7 @@ http://www.mulesoft.org/schema/mule/hello-world http://www.mulesoft.org/schema/m
     <flow name="mule-demoFlow1" doc:name="mule-demoFlow1">
         <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP"/>
         <hello-world:get-customer config-ref="HelloWorld" content="#[payload]" doc:name="HelloWorld"/>
-        <invoke object-ref="objectLogger" method="toJson" doc:name="Invoke" methodArguments="#[payload]"/>        
+        <invoke object-ref="objectLogger" method="toJson" doc:name="LogPayload" methodArguments="#[payload]"/>
         <json:object-to-json-transformer doc:name="Object to JSON"/>
     </flow>
 </mule>
